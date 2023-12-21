@@ -62,8 +62,8 @@ namespace transform_pointcloud {
 		bool getTransform(const std::string &refFrame, const std::string &childFrame, tf::StampedTransform &transform) {
 			std::string errMsg;
 			tf::TransformListener tf_listener;
-			if (!tf_listener.waitForTransform(refFrame, childFrame, ros::Time(0), ros::Duration(0.5),
-											  ros::Duration(0.01), &errMsg)) {
+			if (!tf_listener.waitForTransform(refFrame, childFrame, ros::Time(0), ros::Duration(100.0),
+											  ros::Duration(0.5), &errMsg)) {
 				ROS_ERROR_STREAM("Pointcloud transform | Unable to get pose from TF: " << errMsg);
 				return false;
 			} else {
